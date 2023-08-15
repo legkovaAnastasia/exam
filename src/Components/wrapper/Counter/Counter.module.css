@@ -1,0 +1,36 @@
+.counter {
+    width: 220px;
+    height: 80px;
+    margin: 15px;
+    color: #61dafb;
+    background-color: #282c34;
+    border: 2px solid #61dafb;
+    border-radius: 5px;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    font-size: smaller;
+}
+
+.maxCount {
+    color: crimson;
+}
+
+.setting{
+font-size: large;
+    flex-direction: column;
+}
+.error {
+    color: red;
+}
+.error input {
+    background-color: salmon;
+    border: 2px solid red;
+}
+input{
+    width: 100px;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: bold;
+}

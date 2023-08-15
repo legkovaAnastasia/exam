@@ -1,0 +1,17 @@
+.wrapper {
+    height: 200px;
+    width: 250px;
+    border: 2px solid #61dafb;
+    border-radius: 5px;
+    margin: 40px;
+}
+.btnWrapper {
+    width: 220px;
+    height: 35%;
+    margin: 15px;
+    border: 2px solid #61dafb;
+    border-radius: 5px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}

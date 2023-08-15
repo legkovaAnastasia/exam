@@ -1,0 +1,19 @@
+.btn {
+    display: flex;
+    width: 100px;
+    height: 50px;
+    color: #282c34;
+    background-color: #61dafb;
+    align-content: center;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.inactive {
+    opacity: 0.33;
+}
+.diss {
+    opacity: 0.33;
+}
