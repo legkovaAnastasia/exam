@@ -24,6 +24,7 @@ export const Wrapper = (props: PropsType) => {
     const onChangeMaxHandler = (newMax:number)=>{
         props.changeMax(newMax)
     }
+
     return (
         <div className={s.wrapper}>
             <Counter
@@ -40,7 +41,7 @@ export const Wrapper = (props: PropsType) => {
             />
             <div className={s.btnWrapper}>
                 <Button
-                    error={props.error} disabled={props.error.length<20} name='set' onClick={props.getSet}/>
+                    error={props.error} disabled={(props.max <= props.start) || (props.start < 0)} name='set' onClick={props.getSet}/>
             </div>
         </div>
 

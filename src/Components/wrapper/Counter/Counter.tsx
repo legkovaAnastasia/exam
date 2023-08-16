@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './Counter.module.css'
 import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
@@ -24,7 +24,9 @@ export const Counter = (props: PropsType) => {
         props.changeMax(+e.currentTarget.value)
     }
     let finalClassname = s.counter
-        + (props.error==='incorrect value!'? ' ' + s.error : props.isMax ? ' ' + s.maxCount : '')
+        + (props.error === 'incorrect value!' ? ' ' + s.error :
+            props.error === 'enter values and press "SET"' ? ' ' + ' ' :
+                props.isMax ? ' ' + s.maxCount : '')
     return (
         <div>
             {props.xType === 'setting'
@@ -37,9 +39,7 @@ export const Counter = (props: PropsType) => {
                         <input type='number' onChange={(e) => maxHandler(e)} value={props.max}/>
                     </div>
                 </div>
-                : <div className={finalClassname}>{
-                    props.error ? props.error :  props.count
-                }</div>
+                : <div className={finalClassname}>{props.error ? props.error : props.count}</div>
             }
         </div>
     )

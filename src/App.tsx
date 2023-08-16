@@ -7,17 +7,26 @@ import SettingsWrapper from "./Components/wrapper/SettingsWrapper";
 
 function App() {
     let [count, setCount] = useState(0)
-    const [error, setError] = useState<string>(' ')
+    const [error, setError] = useState<string>('')
 
     const [start, setStart] = useState(0)
     const [max, setMax] = useState(1)
     useEffect(() => {
         if ((max <= start) || (start < 0)) {
             setError('incorrect value!')
-        } else {
+        }
+        else {
             setError('enter values and press "SET"')
         }
     }, [start, max])
+
+    useEffect(() => {
+        getFromLS()
+    }, [])
+
+    useEffect(() => {
+        getToLS()
+    }, [start, error, max, count])
     const changeStart = (newStart: number) => {
         setStart(newStart)
     }
@@ -25,25 +34,41 @@ function App() {
         setMax(newMax)
     }
     const incCount = () => {
-        // if(error.length>0) {
-        //     setCount(count = count + 1)
-        // }
-
         setCount(count = count + 1)
-
     }
     const getSet = () => {
         setCount(start)
         setError('')
     }
-// let [isMax, setIsMax]=useState(false)
-    let isMax = count    === max
-
-    const reset = () => {
-        setCount(0)
-        setError('enter values and press "SET"')
-        setMax(1)
+    const getToLS = () => {
+        localStorage.setItem('startValue', JSON.stringify(start))
+        localStorage.setItem('errorValue', JSON.stringify(error))
+        localStorage.setItem('maxValue', JSON.stringify(max))
+        localStorage.setItem('countValue', JSON.stringify(count))
     }
+    const getFromLS=()=>{
+        let startAsString = localStorage.getItem('startValue')
+        let errorAsString = localStorage.getItem('errorValue')
+        let maxAsString = localStorage.getItem('maxValue')
+        let countAsString = localStorage.getItem('countValue')
+        if(startAsString)setStart(JSON.parse(startAsString))
+        if(errorAsString)setError(JSON.parse(errorAsString))
+        if(maxAsString)setMax(JSON.parse(maxAsString))
+        if(countAsString)setCount(JSON.parse(countAsString))
+    }
+    const reset = () => {
+        localStorage.clear()
+        setStart(0)
+        setMax(1)
+        setError('enter values and press "SET"')
+    }
+    let isMax = count === max
+
+    // const reset = () => {  без localStorage
+    //     setCount(0)
+    //     setError('enter values and press "SET"')
+    //     setMax(1)
+    // }
 
     return (
         <div className="App">
