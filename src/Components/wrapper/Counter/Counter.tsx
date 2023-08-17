@@ -18,7 +18,7 @@ type PropsType = {
 export const Counter = (props: PropsType) => {
 
     const startHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.changeStart(+e.currentTarget.value)
+        props.changeStart(e.currentTarget.valueAsNumber)
     }
     const maxHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.changeMax(+e.currentTarget.value)
@@ -32,11 +32,13 @@ export const Counter = (props: PropsType) => {
             {props.xType === 'setting'
                 ? <div className={`${s.counter} + ${s.setting}`}>
                     <div className={props.start < 0 ? `${s.error}` : ''}>start value:
-                        <input type='number' onChange={(e) => startHandler(e)} value={props.start}
+                        <input type='number'
+                               onChange={(e) => startHandler(e)} value={props.start}
                         />
                     </div>
                     <div className={props.max <= props.start ? `${s.error}` : ''}>max value:
-                        <input type='number' onChange={(e) => maxHandler(e)} value={props.max}/>
+                        <input type='number'
+                               onChange={(e) => maxHandler(e)} value={props.max}/>
                     </div>
                 </div>
                 : <div className={finalClassname}>{props.error ? props.error : props.count}</div>

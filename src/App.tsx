@@ -1,22 +1,17 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
-import {Counter} from "./Components/wrapper/Counter/Counter";
-import {Button} from "./Components/Button/Button";
 import CounterWrapper from "./Components/wrapper/CounterWrapper";
 import SettingsWrapper from "./Components/wrapper/SettingsWrapper";
 
 function App() {
-    let [count, setCount] = useState(0)
+    let [count, setCount] = useState<number>(0)
     const [error, setError] = useState<string>('')
-
     const [start, setStart] = useState(0)
     const [max, setMax] = useState(1)
+
     useEffect(() => {
         if ((max <= start) || (start < 0)) {
             setError('incorrect value!')
-        }
-        else {
-            setError('enter values and press "SET"')
         }
     }, [start, max])
 
@@ -28,9 +23,11 @@ function App() {
         getToLS()
     }, [start, error, max, count])
     const changeStart = (newStart: number) => {
+        setError('enter values and press "SET"')
         setStart(newStart)
     }
     const changeMax = (newMax: number) => {
+        setError('enter values and press "SET"')
         setMax(newMax)
     }
     const incCount = () => {
@@ -52,7 +49,7 @@ function App() {
         let maxAsString = localStorage.getItem('maxValue')
         let countAsString = localStorage.getItem('countValue')
         if(startAsString)setStart(JSON.parse(startAsString))
-        if(errorAsString)setError(JSON.parse(errorAsString))
+        // if(errorAsString)setError(JSON.parse(errorAsString))
         if(maxAsString)setMax(JSON.parse(maxAsString))
         if(countAsString)setCount(JSON.parse(countAsString))
     }
